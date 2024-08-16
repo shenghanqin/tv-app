@@ -6,11 +6,11 @@ const Navbar = () => {
     <div className="navbar">
       <div className="container">
         <nav className="navbar__nav">
-          <h3 className="nav__brand">
-            <Link to="/">
-              <i className="fas fa-video"></i> TV SHOW SEARCH
+          <h1 className="nav__brand">
+            <Link to="/" title="homepage">
+              <img src="/tvm-header-logo.png" alt="home logo" />
             </Link>
-          </h3>
+          </h1>
           <ul className="nav__links">
             <li className="links__link">
               <Link to="/">HOME</Link>

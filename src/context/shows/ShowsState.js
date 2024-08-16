@@ -14,6 +14,7 @@ const ShowsState = (props) => {
     shows: [],
     singleShow: {},
     loading: false,
+    searchTerm: '',
   };
 
   const [state, dispatch] = useReducer(ShowsReducer, initialState);
@@ -29,11 +30,12 @@ const ShowsState = (props) => {
       `https://api.tvmaze.com/search/shows?q=${searchTerm}`
     );
 
-    console.log(data);
-
     dispatch({
       type: SEARCH_SHOWS,
-      payload: data,
+      payload: {
+        shows: data,
+        searchTerm: searchTerm
+      },
     });
   };
 
@@ -47,12 +49,12 @@ const ShowsState = (props) => {
     const { data } = await axios.get(
       `https://api.tvmaze.com/shows`
     );
-
-    console.log(data);
-
     dispatch({
       type: SEARCH_SHOWS,
-      payload: data,
+      payload: {
+        shows: data,
+        searchTerm: ''
+      },
     });
   };
 

@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 
 const Homepage = () => {
   const showsContext = useContext(ShowsContext);
-  const { loading, shows, homeShows } = showsContext;
+  const { loading, shows, homeShows, searchTerm } = showsContext;
 
   useEffect(() => {
     homeShows()
@@ -24,29 +24,34 @@ const Homepage = () => {
           <Loader />
         ) 
         : (
-          <div className="homepage__list">
-            {shows.map((item) => {
-              const { show} = item
-              const { id, image, name, rating } = show || item
-              return (
-                <ListItem
-                  key={id}
-                  id={id}
-                  image={
-                    image
-                      ? image.medium
-                      : "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
-                  }
-                  name={name}
-                  rating={
-                    rating.average
-                      ? rating.average
-                      : "No rating"
-                  }
-                />
-              )
-            })}
-          </div>
+          <>
+              {!!searchTerm && (
+                <div>The content of "{searchTerm}" is displayed. There are {shows.length} results</div>
+              )}
+              <div className="homepage__list">
+                {shows.map((item) => {
+                  const { show } = item
+                  const { id, image, name, rating } = show || item
+                  return (
+                    <ListItem
+                      key={id}
+                      id={id}
+                      image={
+                        image
+                          ? image.medium
+                          : "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
+                      }
+                      name={name}
+                      rating={
+                        rating.average
+                          ? rating.average
+                          : "No rating"
+                      }
+                    />
+                  )
+                })}
+              </div>
+          </>
         )
       }
     </div>

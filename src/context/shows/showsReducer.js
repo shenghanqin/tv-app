@@ -15,7 +15,8 @@ const showsReducer = (state, action) => {
     case SEARCH_SHOWS:
       return {
         ...state,
-        shows: action.payload,
+        shows: action.payload.shows,
+        searchTerm: action.payload.searchTerm,
         loading: false,
       };
     case SET_SINGLE_SHOW:
