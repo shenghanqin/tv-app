@@ -215,6 +215,16 @@ body {
   text-align: center;
 }
 
+.info__type {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 6px 12px;
+  border-radius: 16px 0 16px 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+}
 
 .info__name {
   font-size: 1rem;
@@ -226,6 +236,7 @@ body {
   justify-content: center;
   color: var(--secondary-color);
   padding: 5px;
+  font-size: 24px;
 }
 
 .info__rating .star-svg {
