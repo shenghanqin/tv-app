@@ -44,6 +44,9 @@ body {
   display: block;
   margin: 2rem auto;
 }
+.loader.small img {
+  width: 150px;
+}
 
 /* Navbar Styles */
 .navbar {
@@ -241,6 +244,8 @@ body {
 .homepage__list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  /* TODO 底部加载的 */
+  min-height: 100vh; 
 }
 
 @media (min-width: 450px) {

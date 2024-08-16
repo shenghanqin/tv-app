@@ -13,7 +13,7 @@ const Searchbar = () => {
   const inputRef = useRef()
 
   const showsContext = useContext(ShowsContext);
-  const { searchShows } = showsContext;
+  const { searchShows, homeShows } = showsContext;
 
   const { alert, setAlert } = useContext(AlertsContext);
 
@@ -22,6 +22,7 @@ const Searchbar = () => {
     console.log("🚀 ~ onSearchHandler ~ searchTerm:", searchTerm)
     if (searchTerm === "") {
       setAlert("Please enter something", "danger");
+      homeShows()
     } else {
       searchShows(searchTerm);
     }

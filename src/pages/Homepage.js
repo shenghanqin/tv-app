@@ -7,17 +7,24 @@ import ShowsContext from "../context/shows/showsContext";
 import ListItem from "../components/ListItem";
 import Loader from "../components/Loader";
 import { useMediaQuery } from "react-responsive";
+import { InView } from 'react-intersection-observer'
 
 const Homepage = () => {
   const showsContext = useContext(ShowsContext);
-  const { loading, shows, homeShows, searchTerm } = showsContext;
+  const { loading, shows, homeShows, searchTerm, loadingMore, loadMoreShows } = showsContext;
 
   const isLarge = useMediaQuery({ minWidth: 700 })
 
   useEffect(() => {
     homeShows()
-    console.log('usereff')
   }, [])
+
+  const onLineChange = (visible) => {
+    console.log("🚀 ~ onLineChange ~ onLineChange:")
+    if (visible) {
+      loadMoreShows()
+    }
+  }
 
   return (
     <div className="homepage">
@@ -54,7 +61,14 @@ const Homepage = () => {
                     />
                   )
                 })}
+
               </div>
+              {!!loadingMore && (
+                <Loader size="small" />
+              )}
+              {/* TODO search don't support pagination */}
+              {!searchTerm && !loadingMore && shows.length > 0 && <InView as="div" onChange={onLineChange}></InView>}
+
           </>
         )
       }

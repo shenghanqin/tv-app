@@ -7,6 +7,8 @@ import {
   SET_LOADING,
   SET_SINGLE_SHOW,
   CLEAR_SINGLE_SHOW,
+  SET_LOADING_MORE,
+  SEARCH_SHOWS_MORE,
 } from "../types";
 
 const ShowsState = (props) => {
@@ -14,7 +16,9 @@ const ShowsState = (props) => {
     shows: [],
     singleShow: {},
     loading: false,
+    loadingMore: false,
     searchTerm: '',
+    currentPage: 1,
   };
 
   const [state, dispatch] = useReducer(ShowsReducer, initialState);
@@ -27,14 +31,15 @@ const ShowsState = (props) => {
     dispatch({ type: SET_LOADING });
 
     const { data } = await axios.get(
-      `https://api.tvmaze.com/search/shows?q=${searchTerm}`
+      `https://api.tvmaze.com/search/shows?q=${searchTerm}&page=1`
     );
 
     dispatch({
       type: SEARCH_SHOWS,
       payload: {
         shows: data,
-        searchTerm: searchTerm
+        searchTerm: searchTerm,
+        currentPage: 1,
       },
     });
   };
@@ -47,13 +52,35 @@ const ShowsState = (props) => {
     dispatch({ type: SET_LOADING });
 
     const { data } = await axios.get(
-      `https://api.tvmaze.com/shows`
+      `https://api.tvmaze.com/shows?page=1`
     );
     dispatch({
       type: SEARCH_SHOWS,
       payload: {
         shows: data,
-        searchTerm: ''
+        searchTerm: '',
+        currentPage: 1,
+      },
+    });
+  };
+
+  const loadMoreShows = async () => {
+    dispatch({ type: SET_LOADING_MORE });
+
+    const { currentPage, searchTerm } = state
+    console.log(currentPage)
+    const newPage = currentPage + 1
+
+    const { data } = await axios.get(
+      searchTerm
+        ? `https://api.tvmaze.com/search/shows?q=${searchTerm}&page==${newPage}`
+        : `https://api.tvmaze.com/shows?page=${newPage}`
+    );
+    dispatch({
+      type: SEARCH_SHOWS_MORE,
+      payload: {
+        shows: data,
+        currentPage: newPage,
       },
     });
   };
@@ -85,10 +112,13 @@ const ShowsState = (props) => {
         shows: state.shows,
         singleShow: state.singleShow,
         loading: state.loading,
+        loadingMore: state.loadingMore,
+        currentPage: state.currentPage,
         homeShows,
         searchShows,
         getSingleShow,
         clearSingleShow,
+        loadMoreShows,
       }}
     >
       {props.children}

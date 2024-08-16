@@ -1,8 +1,8 @@
 import spinner from "./spinner.gif";
 
-const Loader = () => {
+const Loader = ({ size = '' }) => {
   return (
-    <div className="loader">
+    <div className={"loader " + size}>
       <img src={spinner} alt="Loading..." />
     </div>
   );
