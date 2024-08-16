@@ -18,10 +18,8 @@ const Searchbar = () => {
   const { alert, setAlert } = useContext(AlertsContext);
 
   const onSearchHandler = (e) => {
-    e.preventDefault();
     
     console.log("🚀 ~ onSearchHandler ~ searchTerm:", searchTerm)
-    debugger
     if (searchTerm === "") {
       setAlert("Please enter something", "danger");
     } else {
@@ -32,6 +30,7 @@ const Searchbar = () => {
   useEffect(() => {
     inputRef.current.addEventListener("keyup", function (event) {
       // event.preventDefault();
+      console.log('keyup', event)
       if (event.keyCode === 13) {
         onSearchHandler(event)
       }

@@ -13,6 +13,7 @@ const Homepage = () => {
 
   useEffect(() => {
     homeShows()
+    console.log('usereff')
   }, [])
 
   return (
