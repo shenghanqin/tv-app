@@ -20,8 +20,6 @@ const Navbar = () => {
             </li>
             <li className="links__search">
               <Searchbar />
-              {/* <input />
-              <i className="fas fa-search"></i> */}
             </li>
           </ul>
         </nav>

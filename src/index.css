@@ -52,8 +52,12 @@ img {
 
 /* Navbar Styles */
 .navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   padding: 1rem;
   background: var(--dark-color);
+  z-index: 1;
 }
 
 .navbar__nav {
@@ -196,7 +200,23 @@ img {
 /* Homepage Styles */
 .homepage__list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 450px) {
+  .homepage__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 960px) {
+  .homepage__list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+  .homepage__list {
+      grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 /* Single Show Page Styles */

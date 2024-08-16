@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useRef } from "react";
 
 // Context
 import ShowsContext from "../context/shows/showsContext";
@@ -27,21 +27,15 @@ const Searchbar = () => {
     }
   };
 
-  useEffect(() => {
-    inputRef.current.addEventListener("keyup", function (event) {
-      // event.preventDefault();
-      console.log('keyup', event)
-      if (event.keyCode === 13) {
-        onSearchHandler(event)
-      }
-    });
-
-  }, [])
-
+  const onKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      onSearchHandler()
+    }
+  }
 
   return (
     <div className="searchbar">
-      <form className="searchbar__form">
+      <div className="searchbar__form">
         <input
           type="text"
           placeholder="Search For Tv Show"
@@ -52,6 +46,7 @@ const Searchbar = () => {
             
           }}
           ref={inputRef}
+          onKeyUp={onKeyUp}
         />
         <button className="searchbar__btn" onClick={() => {
           console.log('searchbar__btn')
@@ -60,7 +55,7 @@ const Searchbar = () => {
           <i className="fas fa-search"></i>
         </button>
         {alert ? <Alert message={alert.message} type={alert.type} positionType="bottom" /> : null}
-      </form>
+      </div>
     </div>
   );
 };
