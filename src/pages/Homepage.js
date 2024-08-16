@@ -6,10 +6,13 @@ import ShowsContext from "../context/shows/showsContext";
 // Components
 import ListItem from "../components/ListItem";
 import Loader from "../components/Loader";
+import { useMediaQuery } from "react-responsive";
 
 const Homepage = () => {
   const showsContext = useContext(ShowsContext);
   const { loading, shows, homeShows, searchTerm } = showsContext;
+
+  const isLarge = useMediaQuery({ minWidth: 700 })
 
   useEffect(() => {
     homeShows()
@@ -34,6 +37,7 @@ const Homepage = () => {
                   const { id, image, name, rating } = show || item
                   return (
                     <ListItem
+                      isLarge={isLarge}
                       key={id}
                       id={id}
                       image={

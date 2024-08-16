@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Searchbar from "./Searchbar";
+import { useMediaQuery } from 'react-responsive'
 
 const Navbar = () => {
+  const isLarge = useMediaQuery({ minWidth: 700 })
+
   return (
     <div className="navbar">
       <div className="container">
@@ -18,11 +21,17 @@ const Navbar = () => {
             <li className="links__link">
               <Link to="/about">ABOUT</Link>
             </li>
-            <li className="links__search">
-              <Searchbar />
-            </li>
+            {isLarge && (
+              <li className="links__search">
+                <Searchbar />
+              </li>
+            )}
+            
           </ul>
         </nav>
+        {!isLarge && (
+          <Searchbar />
+        )}
       </div>
     </div>
   );
