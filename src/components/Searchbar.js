@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 
 // Context
 import ShowsContext from "../context/shows/showsContext";
@@ -10,6 +10,8 @@ import Alert from "./Alert";
 const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  const inputRef = useRef()
+
   const showsContext = useContext(ShowsContext);
   const { searchShows } = showsContext;
 
@@ -17,7 +19,9 @@ const Searchbar = () => {
 
   const onSearchHandler = (e) => {
     e.preventDefault();
-
+    
+    console.log("🚀 ~ onSearchHandler ~ searchTerm:", searchTerm)
+    debugger
     if (searchTerm === "") {
       setAlert("Please enter something", "danger");
     } else {
@@ -25,19 +29,38 @@ const Searchbar = () => {
     }
   };
 
+  useEffect(() => {
+    inputRef.current.addEventListener("keyup", function (event) {
+      // event.preventDefault();
+      if (event.keyCode === 13) {
+        onSearchHandler(event)
+      }
+    });
+
+  }, [])
+
+
   return (
     <div className="searchbar">
-      {alert ? <Alert message={alert.message} type={alert.type} /> : null}
       <form className="searchbar__form">
         <input
           type="text"
           placeholder="Search For Tv Show"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            setSearchTerm(e.target.value)
+            console.log('e.target.value', e.target.value)
+            
+          }}
+          ref={inputRef}
         />
-        <button className="btn btn-block" onClick={onSearchHandler}>
-          SEARCH
+        <button className="searchbar__btn" onClick={() => {
+          console.log('searchbar__btn')
+          onSearchHandler()
+        }}>
+          <i className="fas fa-search"></i>
         </button>
+        {alert ? <Alert message={alert.message} type={alert.type} positionType="bottom" /> : null}
       </form>
     </div>
   );
