@@ -13,6 +13,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #141414;
+  color: #fff;
 }
 
 
@@ -184,6 +185,7 @@ body {
 
 /* ListItem styles */
 .listitem {
+  display: block;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -254,6 +256,10 @@ body {
   font-size: 1rem;
 }
 
+.floor-title {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
 
 /* Homepage Styles */
 .homepage__list {
@@ -277,6 +283,31 @@ body {
   .homepage__list {
       grid-template-columns: repeat(5, 1fr);
     }
+}
+
+.slider-list .xxl-scroll-slider-inner {
+  scroll-padding-left: 24px;
+}
+
+.slider-list.xxl-scroll-slider-list {
+  padding-left: 24px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.slider-list .xxl-scroll-slider-item {
+  width: 140px;
+  margin-left: 16px;
+}
+
+@media (min-width: 450px) {
+  .slider-list .xxl-scroll-slider-item{
+    width: 210px;
+  }
+}
+
+.slider-list .xxl-scroll-slider-item:last-child {
+  margin-right: 16px;
 }
 
 /* Single Show Page Styles */
@@ -412,42 +443,6 @@ body {
   animation: xxl-better-picture-to-show 0.45s forwards;
 }
 
-@-moz-keyframes xxl-better-picture-to-hide {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@-webkit-keyframes xxl-better-picture-to-hide {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@-o-keyframes xxl-better-picture-to-hide {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
 @keyframes xxl-better-picture-to-hide {
   0% {
     opacity: 1;
@@ -457,42 +452,6 @@ body {
   100% {
     opacity: 0;
     visibility: hidden;
-  }
-}
-
-@-moz-keyframes xxl-better-picture-to-show {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  100% {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-@-webkit-keyframes xxl-better-picture-to-show {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  100% {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-@-o-keyframes xxl-better-picture-to-show {
-  0% {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  100% {
-    opacity: 1;
-    visibility: visible;
   }
 }
 
@@ -506,4 +465,107 @@ body {
     opacity: 1;
     visibility: visible;
   }
+}
+
+.xxl-scroll-slider {
+  position: relative;
+}
+
+.xxl-scroll-slider ::-webkit-scrollbar {
+  display: none;
+}
+
+.xxl-scroll-slider:hover .xxl-scroll-slider-nav {
+  opacity: 1;
+}
+
+.xxl-scroll-slider-inner {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.xxl-scroll-slider-list {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.xxl-scroll-slider-item {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.xxl-scroll-slider-item-start {
+  scroll-snap-align: start;
+}
+
+.xxl-scroll-slider-item-center {
+  scroll-snap-align: center;
+}
+
+.xxl-scroll-slider-item-end {
+  scroll-snap-align: end;
+}
+
+.xxl-scroll-slider-nav {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  border-radius: 4px;
+  z-index: 1;
+  top: 50%;
+  margin-top: -16px;
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .xxl-scroll-slider-nav {
+    display: none !important;
+  }
+}
+
+.xxl-scroll-slider-nav:active {
+  transform: scale(0.9);
+}
+
+.xxl-scroll-slider-nav:after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("https://n1image.hjfile.cn/res7/2019/01/17/f68f3cedf36e2b01bb62533a2b66a1af.png?imageView2/2/w/64") no-repeat center/contain;
+}
+
+.xxl-scroll-slider-nav-prev {
+  left: 16px;
+}
+
+.xxl-scroll-slider-nav-prev:after {
+  transform: scale(-1, 1);
+}
+
+.xxl-scroll-slider-nav-next {
+  right: 16px;
+}
+
+.xxl-scroll-slider-scrollbar {
+  width: 50px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background-color: #333;
+}
+
+.xxl-scroll-slider-scrollbar-active {
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  width: 25px;
+  transition: transform 200ms;
 }
