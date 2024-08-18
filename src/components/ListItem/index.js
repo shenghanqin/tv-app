@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import BetterPicture from "./BetterPicture";
+import BetterPicture from "../BetterPicture/index";
 import { Rating } from 'react-simple-star-rating'
+
+import "./styles.css";
 
 const ListItem = ({ image, name, rating, id, genres, isLarge }) => {
   const imageUrl = image

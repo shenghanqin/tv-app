@@ -1,0 +1,30 @@
+/* Alert Styles */
+.alert {
+  padding: 10px 17px;
+  font-size: 14px;
+  border: 1px solid var(--dark-color);
+  margin: 0.5rem 0;
+}
+
+.alert-warning {
+  background: #f8ffc4;
+  border: 1px solid #ffee00;
+}
+
+.alert-danger {
+  background: #ffc4c4;
+  border: 1px solid #ff0000;
+}
+
+.alert-info {
+  background: #d7eafe;
+  border: 1px solid #0523b7;
+}
+
+.alert-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+}

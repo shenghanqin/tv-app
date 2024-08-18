@@ -4,7 +4,7 @@ import { useEffect, useContext } from "react";
 import ShowsContext from "../context/shows/showsContext";
 
 // Components
-import Loader from "../components/Loader";
+import Loader from "../components/Loader/index";
 
 const Singlepage = ({ match }) => {
   const { getSingleShow, singleShow, loading } = useContext(ShowsContext);

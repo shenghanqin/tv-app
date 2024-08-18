@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useIntersection } from '../hooks/use-intersection'
-import { detectAspectRatio } from '../utils/device-utils'
+import { useIntersection } from '../../hooks/use-intersection'
+import { detectAspectRatio } from '../../utils/device-utils'
+
+import "./styles.css";
+
 
 let cx = require('classnames/bind')
 

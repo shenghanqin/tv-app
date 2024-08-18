@@ -1,0 +1,37 @@
+/* Searchbar Styles */
+.searchbar {
+  /* width: 260px; */
+}
+
+.searchbar__form {
+  position: relative;
+}
+
+.searchbar__form>input {
+  width: 100%;
+  border-radius: 22px;
+  padding: 10px 61px 10px 17px;
+  border: 1px solid var(--dark-color);
+  background: var(--offwhite-color);
+  color: var(--dark-color);
+  font-size: 16px;
+  outline-width: 0ch;
+}
+
+.searchbar__form>input:focus {
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 0 1px 1px rgba(60, 148, 139, 0.5);
+}
+
+.searchbar__form>.searchbar__btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  outline: none;
+
+}

@@ -4,11 +4,12 @@ import { useContext, useEffect } from "react";
 import ShowsContext from "../context/shows/showsContext";
 
 // Components
-import ListItem from "../components/ListItem";
-import ScrollSlider from "../components/ScrollSlider";
-import Loader from "../components/Loader";
+import ListItem from "../components/ListItem/index";
+import ScrollSlider from "../components/ScrollSlider/index";
+import Loader from "../components/Loader/index";
 import { useMediaQuery } from "react-responsive";
 import { InView } from 'react-intersection-observer'
+import HomeBanner from "../components/HomeBanner/index";
 
 const Homepage = () => {
   const showsContext = useContext(ShowsContext);
@@ -41,6 +42,7 @@ const Homepage = () => {
               )}
               {!searchTerm && (
                 <>
+                  <HomeBanner {...(shows[parseInt(Math.random() * 20)])} />
                   <h2 className="floor-title">All Time Popular Shows</h2>
                   <div className='slider-list'>
                     <ScrollSlider

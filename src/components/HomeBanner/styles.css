@@ -1,0 +1,6 @@
+.home-banner__container {
+  min-height: 74vh;
+  border-radius: 12px;
+  padding: 60px 40px;
+  background: center top / cover no-repeat fixed;
+}

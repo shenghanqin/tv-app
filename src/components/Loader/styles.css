@@ -1,0 +1,37 @@
+.page-loading:not(.small) .page-loading-square {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  background: #333;
+  border-radius: 12px;
+  z-index: 100;
+}
+
+.page-loadin.small .page-loading-square {
+  margin-top: 20px;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  background: #333;
+  border-radius: 12px;
+  z-index: 100;
+}
+
+.page-loading .loading-easy {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #fff 95%, rgba(0, 0, 0, 0)) 50% 2px/12px 12px no-repeat, radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 14px), #999 0);
+  animation: easy-ani 2s infinite linear;
+}
+
+
+@keyframes easy-ani {
+  to {
+    transform: rotate(1turn);
+  }
+}

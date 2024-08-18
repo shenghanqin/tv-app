@@ -8,11 +8,14 @@ import React, {
   useState,
 } from 'react'
 import PropTypes from 'prop-types'
-import { getWebpSupport } from '../utils/img-utils'
+import { getWebpSupport } from '../../utils/img-utils'
+import "./styles.css";
 
 let cx = require('classnames/bind')
 
 const SLIDER_CLASSNAME = 'xxl-scroll-slider'
+
+
 
 
 const Slide = React.forwardRef(

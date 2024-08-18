@@ -1,11 +1,13 @@
 import { useState, useContext, useRef } from "react";
 
 // Context
-import ShowsContext from "../context/shows/showsContext";
-import AlertsContext from "../context/alerts/alertsContext";
+import ShowsContext from "../../context/shows/showsContext";
+import AlertsContext from "../../context/alerts/alertsContext";
 
 // Components
-import Alert from "./Alert";
+import Alert from "../Alert/index";
+
+import "./styles.css";
 
 const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState("");

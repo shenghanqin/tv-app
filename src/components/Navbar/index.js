@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import Searchbar from "./Searchbar";
+import Searchbar from "../Searchbar";
 import { useMediaQuery } from 'react-responsive'
 import { useState } from "react";
+
+
+import "./styles.css";
+
 
 const Navbar = () => {
   const isLarge = useMediaQuery({ minWidth: 700 })

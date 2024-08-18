@@ -1,3 +1,6 @@
+import "./styles.css";
+
+
 const Alert = ({ type, message, positionType }) => {
   return (
     <div className={`alert alert-${type} ${positionType === 'bottom' ? 'alert-bottom' : ''}`}>
