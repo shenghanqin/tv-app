@@ -41,24 +41,13 @@ const Homepage = () => {
               <div className="homepage__list">
                 {shows.map((item) => {
                   const { show } = item
-                  const { id, image, name, rating, type } = show || item
+                  const { id } = show || item
                   return (
                     <ListItem
                       isLarge={isLarge}
                       key={id}
                       id={id}
-                      type={type}
-                      image={
-                        image
-                          ? image.medium
-                          : "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
-                      }
-                      name={name}
-                      rating={
-                        rating.average
-                          ? rating.average
-                          : "No rating"
-                      }
+                      {...(show || item)}
                     />
                   )
                 })}
