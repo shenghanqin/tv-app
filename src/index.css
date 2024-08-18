@@ -12,6 +12,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: #141414;
 }
 
 
@@ -93,7 +94,14 @@ body {
   text-decoration: none;
   margin-left: 0.5rem;
   border: 1px solid var(--dark-color);
-  font-size: 20px;
+  font-size: 14px;
+}
+
+@media (min-width: 700px) {
+  .links__link a {
+    font-size: 20px;;
+  }
+  
 }
 
 .links__link a:hover {
