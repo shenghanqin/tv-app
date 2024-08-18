@@ -95,7 +95,7 @@
 
 .xxl-scroll-slider-scrollbar-active {
   height: 4px;
-  background-color: #fff;
+  background-color: var(--secondary-color);
   border-radius: 4px;
   width: 50px;
   transition: transform 200ms;
