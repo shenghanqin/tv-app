@@ -90,7 +90,7 @@ const ShowsState = (props) => {
       type: SET_LOADING,
     });
 
-    const { data } = await axios.get(`https://api.tvmaze.com/shows/${id}`);
+    const { data } = await axios.get(`https://api.tvmaze.com/shows/${id}?embed[]=episodes&embed[]=cast&embed[]=seasons`);
 
     console.log(data);
 
@@ -114,6 +114,7 @@ const ShowsState = (props) => {
         loading: state.loading,
         loadingMore: state.loadingMore,
         currentPage: state.currentPage,
+        searchTerm: state.searchTerm,
         homeShows,
         searchShows,
         getSingleShow,

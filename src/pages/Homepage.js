@@ -6,10 +6,10 @@ import ShowsContext from "../context/shows/showsContext";
 // Components
 import ListItem from "../components/ListItem/index";
 import ScrollSlider from "../components/ScrollSlider/index";
+import HomeBanner from "../components/HomeBanner/index";
 import Loader from "../components/Loader/index";
 import { useMediaQuery } from "react-responsive";
 import { InView } from 'react-intersection-observer'
-import HomeBanner from "../components/HomeBanner/index";
 
 const Homepage = () => {
   const showsContext = useContext(ShowsContext);
@@ -28,6 +28,8 @@ const Homepage = () => {
     }
   }
 
+  console.log('searchTerm', searchTerm)
+
   return (
     <div className="homepage">
       {
@@ -37,52 +39,45 @@ const Homepage = () => {
         ) 
         : (
           <>
-              {!!searchTerm && (
-                <div>The content of "{searchTerm}" is displayed. There are {shows.length} results</div>
-              )}
-              {!searchTerm && (
-                <>
-                  <HomeBanner {...(shows[parseInt(Math.random() * 20)])} />
-                  <h2 className="floor-title">All Time Popular Shows</h2>
-                  <div className='slider-list'>
-                    <ScrollSlider
-                      isNeedScrollbar={!isLarge}
-                    >
-                      {shows.slice(0, 12).map((item) => {
-                        const { show } = item
-                        const { id } = show || item
-                        return (
-                          <ListItem
-                            isLarge={isLarge}
-                            key={id}
-                            id={id}
-                            {...(show || item)}
-                          />
-                        )
-                      })}
-                    </ScrollSlider>
-                  </div>
-                  <h2 className="floor-title">New Shows to Watch</h2>
-                  <div className='slider-list'>
-                    <ScrollSlider
-                      isNeedScrollbar={!isLarge}
-                    >
-                      {shows.slice(12, 24).map((item) => {
-                        const { show } = item
-                        const { id } = show || item
-                        return (
-                          <ListItem
-                            isLarge={isLarge}
-                            key={id}
-                            id={id}
-                            {...(show || item)}
-                          />
-                        )
-                      })}
-                    </ScrollSlider>
-                  </div>
-                </>
-              )}
+              <HomeBanner {...(shows[parseInt(Math.random() * 20)])} isHome={true} />
+              <h2 className="floor-title">All Time Popular Shows</h2>
+              <div className='slider-list'>
+                <ScrollSlider
+                  isNeedScrollbar={!isLarge}
+                >
+                  {shows.slice(0, 12).map((item) => {
+                    const { show } = item
+                    const { id } = show || item
+                    return (
+                      <ListItem
+                        isLarge={isLarge}
+                        key={id}
+                        id={id}
+                        {...(show || item)}
+                      />
+                    )
+                  })}
+                </ScrollSlider>
+              </div>
+              <h2 className="floor-title">New Shows to Watch</h2>
+              <div className='slider-list'>
+                <ScrollSlider
+                  isNeedScrollbar={!isLarge}
+                >
+                  {shows.slice(12, 24).map((item) => {
+                    const { show } = item
+                    const { id } = show || item
+                    return (
+                      <ListItem
+                        isLarge={isLarge}
+                        key={id}
+                        id={id}
+                        {...(show || item)}
+                      />
+                    )
+                  })}
+                </ScrollSlider>
+              </div>
               <h2 className="floor-title">All Shows</h2>
               <div className="homepage__list">
                 {shows.map((item) => {

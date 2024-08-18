@@ -10,23 +10,31 @@ import Alert from "../Alert/index";
 import "./styles.css";
 
 const Searchbar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const searchArr = window.location.href.split('/search/')
+  console.log("🚀 ~ Navbar ~ searchArr:", searchArr)
+  const searchTermUrl = searchArr.length === 2 ? searchArr[1] : ''
+  const [searchTerm, setSearchTerm] = useState(decodeURIComponent(searchTermUrl));
 
   const inputRef = useRef()
 
   const showsContext = useContext(ShowsContext);
-  const { searchShows, homeShows } = showsContext;
+  const { searchShows } = showsContext;
 
   const { alert, setAlert } = useContext(AlertsContext);
 
+
+
+
   const onSearchHandler = (e) => {
     
-    console.log("🚀 ~ onSearchHandler ~ searchTerm:", searchTerm)
     if (searchTerm === "") {
       setAlert("Please enter something", "danger");
-      homeShows()
     } else {
-      searchShows(searchTerm);
+      if (searchTermUrl) {
+        searchShows(searchTerm)
+      } else {
+        window.location.href = '/search/' + encodeURIComponent(searchTerm)
+      }
     }
   };
 

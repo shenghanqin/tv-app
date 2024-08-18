@@ -33,6 +33,7 @@ const showsReducer = (state, action) => {
         shows: state.shows.concat(action.payload.shows),
         loadingMore: false,
         currentPage: action.payload.currentPage,
+        searchTerm: action.payload.searchTerm,
       };
     case SET_SINGLE_SHOW:
       return {
