@@ -44,7 +44,7 @@ const Homepage = () => {
                   <h2 className="floor-title">All Time Popular Shows</h2>
                   <div className='slider-list'>
                     <ScrollSlider
-                      isNeedScrollbar={false}
+                      isNeedScrollbar={!isLarge}
                     >
                       {shows.slice(0, 12).map((item) => {
                         const { show } = item
@@ -63,7 +63,7 @@ const Homepage = () => {
                   <h2 className="floor-title">New Shows to Watch</h2>
                   <div className='slider-list'>
                     <ScrollSlider
-                      isNeedScrollbar={false}
+                      isNeedScrollbar={!isLarge}
                     >
                       {shows.slice(12, 24).map((item) => {
                         const { show } = item
