@@ -101,6 +101,9 @@ body {
     }
 }
 
+.slider-list {
+  overflow: hidden;
+}
 .slider-list .listitem {
   margin: 0;
 }
@@ -131,6 +134,10 @@ body {
 
 .slider-list .xxl-scroll-slider-item:last-child {
   margin-right: 16px;
+}
+
+.cast-list {
+  overflow: hidden;
 }
 
 .cast-list .listitem {
