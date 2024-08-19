@@ -7,6 +7,8 @@ import {
   SET_LOADING,
   SET_SINGLE_SHOW,
   CLEAR_SINGLE_SHOW,
+  SET_LOADING_MORE,
+  SEARCH_SHOWS_MORE,
 } from "../types";
 
 const ShowsState = (props) => {
@@ -14,22 +16,72 @@ const ShowsState = (props) => {
     shows: [],
     singleShow: {},
     loading: false,
+    loadingMore: false,
+    searchTerm: '',
+    currentPage: 1,
   };
 
   const [state, dispatch] = useReducer(ShowsReducer, initialState);
 
+  /**
+   * search something content
+   * @param {string} searchTerm input words
+   */
   const searchShows = async (searchTerm) => {
     dispatch({ type: SET_LOADING });
 
     const { data } = await axios.get(
-      `https://api.tvmaze.com/search/shows?q=${searchTerm}`
+      `https://api.tvmaze.com/search/shows?q=${searchTerm}&page=1`
     );
-
-    console.log(data);
 
     dispatch({
       type: SEARCH_SHOWS,
-      payload: data,
+      payload: {
+        shows: data,
+        searchTerm: searchTerm,
+        currentPage: 1,
+      },
+    });
+  };
+
+  /**
+   * homepage default content
+   * @param {string} searchTerm input words
+   */
+  const homeShows = async () => {
+    dispatch({ type: SET_LOADING });
+
+    const { data } = await axios.get(
+      `https://api.tvmaze.com/shows?page=1`
+    );
+    dispatch({
+      type: SEARCH_SHOWS,
+      payload: {
+        shows: data,
+        searchTerm: '',
+        currentPage: 1,
+      },
+    });
+  };
+
+  const loadMoreShows = async () => {
+    dispatch({ type: SET_LOADING_MORE });
+
+    const { currentPage, searchTerm } = state
+    console.log(currentPage)
+    const newPage = currentPage + 1
+
+    const { data } = await axios.get(
+      searchTerm
+        ? `https://api.tvmaze.com/search/shows?q=${searchTerm}&page==${newPage}`
+        : `https://api.tvmaze.com/shows?page=${newPage}`
+    );
+    dispatch({
+      type: SEARCH_SHOWS_MORE,
+      payload: {
+        shows: data,
+        currentPage: newPage,
+      },
     });
   };
 
@@ -38,7 +90,7 @@ const ShowsState = (props) => {
       type: SET_LOADING,
     });
 
-    const { data } = await axios.get(`https://api.tvmaze.com/shows/${id}`);
+    const { data } = await axios.get(`https://api.tvmaze.com/shows/${id}?embed[]=episodes&embed[]=cast&embed[]=seasons`);
 
     console.log(data);
 
@@ -60,9 +112,14 @@ const ShowsState = (props) => {
         shows: state.shows,
         singleShow: state.singleShow,
         loading: state.loading,
+        loadingMore: state.loadingMore,
+        currentPage: state.currentPage,
+        searchTerm: state.searchTerm,
+        homeShows,
         searchShows,
         getSingleShow,
         clearSingleShow,
+        loadMoreShows,
       }}
     >
       {props.children}

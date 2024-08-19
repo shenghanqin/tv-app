@@ -1,6 +1,8 @@
 import {
   SEARCH_SHOWS,
+  SEARCH_SHOWS_MORE,
   SET_LOADING,
+  SET_LOADING_MORE,
   SET_SINGLE_SHOW,
   CLEAR_SINGLE_SHOW,
 } from "../types";
@@ -12,11 +14,26 @@ const showsReducer = (state, action) => {
         ...state,
         loading: true,
       };
+    case SET_LOADING_MORE:
+      return {
+        ...state,
+        loadingMore: true,
+      };
     case SEARCH_SHOWS:
       return {
         ...state,
-        shows: action.payload,
+        shows: action.payload.shows,
+        searchTerm: action.payload.searchTerm,
         loading: false,
+        currentPage: action.payload.currentPage,
+      };
+    case SEARCH_SHOWS_MORE:
+      return {
+        ...state,
+        shows: state.shows.concat(action.payload.shows),
+        loadingMore: false,
+        currentPage: action.payload.currentPage,
+        searchTerm: action.payload.searchTerm,
       };
     case SET_SINGLE_SHOW:
       return {

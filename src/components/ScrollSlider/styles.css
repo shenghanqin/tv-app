@@ -1,0 +1,102 @@
+.xxl-scroll-slider {
+  position: relative;
+}
+
+.xxl-scroll-slider ::-webkit-scrollbar {
+  display: none;
+}
+
+.xxl-scroll-slider:hover .xxl-scroll-slider-nav {
+  opacity: 1;
+}
+
+.xxl-scroll-slider-inner {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.xxl-scroll-slider-list {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.xxl-scroll-slider-item {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.xxl-scroll-slider-item-start {
+  scroll-snap-align: start;
+}
+
+.xxl-scroll-slider-item-center {
+  scroll-snap-align: center;
+}
+
+.xxl-scroll-slider-item-end {
+  scroll-snap-align: end;
+}
+
+.xxl-scroll-slider-nav {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  border-radius: 4px;
+  z-index: 1;
+  top: 50%;
+  margin-top: -16px;
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .xxl-scroll-slider-nav {
+    display: none !important;
+  }
+}
+
+.xxl-scroll-slider-nav:active {
+  transform: scale(0.9);
+}
+
+.xxl-scroll-slider-nav:after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("https://n1image.hjfile.cn/res7/2019/01/17/f68f3cedf36e2b01bb62533a2b66a1af.png?imageView2/2/w/64") no-repeat center/contain;
+}
+
+.xxl-scroll-slider-nav-prev {
+  left: 16px;
+}
+
+.xxl-scroll-slider-nav-prev:after {
+  transform: scale(-1, 1);
+}
+
+.xxl-scroll-slider-nav-next {
+  right: 16px;
+}
+
+.xxl-scroll-slider-scrollbar {
+  width: 100px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background-color: #444;
+}
+
+.xxl-scroll-slider-scrollbar-active {
+  height: 4px;
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  width: 50px;
+  transition: transform 200ms;
+}

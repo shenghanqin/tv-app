@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+.eslintcache
+
 # production
 /build
 
@@ -24,3 +26,5 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+yarn.lock
